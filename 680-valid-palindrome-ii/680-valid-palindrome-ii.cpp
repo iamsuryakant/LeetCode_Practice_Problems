@@ -20,7 +20,7 @@ public:
     bool validPalindrome(string s) {
         int l = 0, r = s.length()-1;
         
-        while(l < r-1){
+        while(l < r){
             if(s[l] != s[r])
             {
                 if(isPali(s, l, r-1))
