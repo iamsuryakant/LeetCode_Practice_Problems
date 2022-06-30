@@ -18,7 +18,7 @@ public:
                     mini = dp[rem];
                 }
             }
-            dp[i] = mini+1;
+            dp[i] = mini+1; // ek step apna bhi toh hain j*j.. isiliye 1 add krr rhe hain
         }
         
         return dp[n];
