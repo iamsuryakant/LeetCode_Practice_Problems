@@ -1,19 +1,24 @@
 class Solution {
 public:
     bool checkPossibility(vector<int>& nums) {
-         bool modified = false;
-        for (int i = 1; i < nums.size(); i++) {
-            if (nums[i] < nums[i - 1]) {
-                if (modified) {
+        
+        int n = nums.size();
+        
+        if(n <= 2)
+            return true;
+        //bool flag = false;
+        //int count =0;
+        for(int i = 1, count = 0;i<n; i++)
+        {
+            if(nums[i] < nums[i-1]){
+               // count++;
+                if(count++ || (i > 1 && i<n-1) &&
+                   (nums[i-2] > nums[i]) && (nums[i+1] < nums[i-1]) ){
                     return false;
-                } else {
-                    modified = true;
-                    if (i - 2 >= 0 && nums[i] < nums[i - 2]) {
-                        nums[i] = nums[i - 1];
-                    }
                 }
             }
         }
         return true;
+       
     }
 };
