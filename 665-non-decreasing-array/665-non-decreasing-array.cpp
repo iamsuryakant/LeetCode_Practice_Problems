@@ -7,8 +7,8 @@ public:
         if(n <= 2)
             return true;
         //bool flag = false;
-        //int count =0;
-        for(int i = 1, count = 0;i<n; i++)
+        int count =0;
+        for(int i = 1;i<n; i++)
         {
             if(nums[i] < nums[i-1]){
                 count++;
