@@ -1,18 +1,27 @@
 class Solution {
-   public:
-    int dfs(int i, int j, int n, vector<vector<int>>& triangle, vector<vector<int>>& memo) {
-        if (i == n) return 0;
-        if (memo[i][j] != -1) return memo[i][j];
+public:
+    
+    int solve(int i, int j,int n, vector<vector<int>>& triangle,
+             vector<vector<int>>& dp){
         
-        int lower_left = triangle[i][j] + dfs(i + 1, j, n, triangle, memo);
-        int lower_right = triangle[i][j] + dfs(i + 1, j + 1, n, triangle, memo);
-        memo[i][j] = min(lower_left, lower_right);
+        if(i == n-1)
+            return triangle[n-1][j];
         
-        return memo[i][j];
+        if(dp[i][j] != -1)
+            return dp[i][j];
+        
+        int down = triangle[i][j] + solve(i+1, j, n, triangle, dp);
+        int dia = triangle[i][j] + solve(i+1, j+1, n, triangle, dp);
+        
+        return dp[i][j] = min(down, dia);
     }
+    
     int minimumTotal(vector<vector<int>>& triangle) {
+        
         int n = triangle.size();
-        vector<vector<int>> memo(n, vector<int>(n, -1));
-        return dfs(0, 0, n, triangle, memo);
+        
+        vector<vector<int>>dp(n, vector<int>(n, -1));
+        
+        return solve(0, 0, n, triangle, dp);
     }
 };
