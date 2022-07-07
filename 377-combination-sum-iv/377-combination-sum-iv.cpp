@@ -35,6 +35,9 @@ public:
             }
         }
         
+        // for(auto x: dp)
+        //     cout<<x<<" ";
+        
         return dp[target];
     }
     
