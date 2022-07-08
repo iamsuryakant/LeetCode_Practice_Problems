@@ -1,36 +1,33 @@
 class Solution {
 public:
     bool isIsomorphic(string s, string t) {
-        
         int n = s.length();
         int m = t.length();
         
         if(n != m)
             return false;
         
-        vector<char>ch1(256, 0),ch2(256, 0);
+        map<char, char> mp1;
+        map<char,int>mp2;
         
-        int cnt1 = 1, cnt2 = 1;
-        
-        for(int i =0; i<n; i++)
+        for(int i = 0; i<n; i++)
         {
-            if(ch1[s[i]] == 0 ){
-                ch1[s[i]] = cnt1++;
-            }
             
-            if(ch2[t[i]] == 0)
-            {
-                ch2[t[i]] = cnt2++;
-            }
-           
-            if(ch1[s[i]] != ch2[t[i]])
-                return false;
+            if(mp1.find(s[i]) != mp1.end()){
+                
+                if(mp1[s[i]] != t[i]){
+                    return false;
+                }
+            }else{
+                    if(mp2.find(t[i]) != mp2.end()){
+                        return false;
+                    }else{
+                         mp1.insert({s[i], t[i]});
+                         mp2.insert({t[i], true});
+                    }
+                }
         }
         
         return true;
-        
     }
 };
-
-
-
