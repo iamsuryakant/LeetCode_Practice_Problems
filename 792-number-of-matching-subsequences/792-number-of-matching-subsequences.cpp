@@ -1,38 +1,50 @@
 class Solution {
 public:
     
-    bool check(string s,string t){
-        int count=0;
-        int j=0;
-        for(int i=0;i<t.size();i++)
+    bool issub(string t, string s)
+    {
+        int j = 0;
+        int cnt = 0;
+        for(int i = 0; i<s.length(); i++)
         {
-            if(t[i]==s[j])
+            if(s[i] == t[j])
             {
                 j++;
-                count++;
+                cnt++;
             }
-            if(count==s.size())
-        {
-            return true;
+            
+            if(cnt == t.length())
+            {
+                return true;
                 break;
-        }
+            }
         }
         
         return false;
     }
     
+    
+    
+    
     int numMatchingSubseq(string s, vector<string>& words) {
-        int ans=0;
-        unordered_map<string,int> m;
-        for(int i=0;i<words.size();i++)
+        
+        int ans  = 0;
+        
+        unordered_map<string, int> mp;
+        
+        for(int i = 0; i<words.size(); i++)
         {
-            m[words[i]]++;
+            mp[words[i]]++;
         }
-        for(auto x:m)
+        
+        for(auto x:mp)
         {
-            if(check(x.first,s))
-                ans+=x.second;
+            if(issub(x.first, s))
+            {
+                ans += x.second;
+            }
         }
+        
         return ans;
     }
 };
